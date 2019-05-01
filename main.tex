@@ -1,0 +1,84 @@
+\documentclass[hyperref, UTF8, cs4size, titlepage]{ctexart}
+
+% 超文本链接设置
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, pdfpagemode=FullScreen}
+
+% 自定义命令
+\newcommand{\keywords}[1]{\textbf{\textit{关键字---}} #1}
+
+% 版面制作
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+% 页面（页尾设置）
+\pagestyle{plain}
+
+% 行距设置
+\usepackage{setspace}
+\singlespacing
+
+% 目录拓展
+\usepackage[nottoc]{tocbibind}
+
+% 引用设置
+\bibliographystyle{plain}
+
+% 索引设置
+\usepackage{makeidx}
+\makeindex
+
+% 标题设置
+\usepackage[raggedright]{titlesec}
+\titleformat*{\section}{\zihao{4}\upshape\bfseries\centering}
+
+\begin{document}
+
+  % 添加封面
+  \input{cover/cover.tex}
+
+  % 添加摘要
+  \phantomsection
+  \input{cover/abstract}
+  \addcontentsline{toc}{section}{摘要}
+  \clearpage
+
+  % 添加目录
+  %\phantomsection
+  \tableofcontents
+  \thispagestyle{empty}
+  \clearpage
+
+  % 内容
+
+  \input{contents/1wentichongshu}
+
+  \input{contents/2wentifenxi}
+  \clearpage
+
+  \input{contents/3muxinjiashe}
+
+  \input{contents/4fuhaoshuoming}
+
+  \input{contents/5muxinjianliqiujie}
+  \clearpage
+
+  \input{contents/6muxinpinjiagaijin}
+
+  \input{contents/7zhencejianyi}
+  \clearpage
+
+  % 引用文献
+  \phantomsection
+  \bibliography{ref/math_model.bib}
+  \clearpage
+
+  % 索引
+  \phantomsection
+  \printindex
+
+  % 附录
+  \appendix
+
+  \section{附录 1}
+
+  \section{附录 2}
+
+\end{document}
