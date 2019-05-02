@@ -1,4 +1,17 @@
 \documentclass[hyperref, UTF8, cs4size, titlepage]{ctexart}
+\usepackage{bookmark}
+
+% 图表标题
+\usepackage{caption}
+
+% 图片
+\usepackage{graphicx}
+
+% 附件添加
+\usepackage{attachfile}
+
+% 数学
+\usepackage{amsmath}
 
 % 超文本链接设置
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, pdfpagemode=FullScreen}
@@ -12,8 +25,8 @@
 \pagestyle{plain}
 
 % 行距设置
-\usepackage{setspace}
-\singlespacing
+%\usepackage{setspace}
+%\singlespacing
 
 % 目录拓展
 \usepackage[nottoc]{tocbibind}
@@ -49,6 +62,7 @@
   % 内容
 
   \input{contents/1wentichongshu}
+  \clearpage
 
   \input{contents/2wentifenxi}
   \clearpage
@@ -77,7 +91,10 @@
   % 附录
   \appendix
 
-  \section{附录 1}
+  \section{附件 1}
+    中国近些年来的一些经济数据\footnote{来源：中国统计年鉴及中国能源统计年鉴}。
+    \attachfile{appendix/fujian1.xlsx}
+    \label{sec:fujian1}
 
   \section{附录 2}
 
