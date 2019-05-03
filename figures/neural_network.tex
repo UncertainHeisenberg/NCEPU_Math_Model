@@ -1,0 +1,43 @@
+\begin{figure}[hb]
+    \caption{神经网络结构图}
+    \label{tab:shenjinwanluo}
+    \centering
+    \def\layersep{2.5cm}
+    \def\Layersep{5.0cm}
+    \begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+        \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+        \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+        \tikzstyle{input neuron}=[neuron, fill=green!50];
+        \tikzstyle{output neuron}=[neuron, fill=red!50];
+        \tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+        \tikzstyle{annot} = [text width=4em, text centered]
+
+        % Draw the input layer nodes
+        \foreach \name / \y in {1,...,8}
+        % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+            \node[input neuron, pin=left:输入 $X_\y$] (I-\name) at (0,-\y) {};
+
+        % Draw the hidden layer nodes
+        \foreach \name / \y in {2,...,7}
+            %\path[yshift=0.5cm]
+                \node[hidden neuron] (H-\name) at (\layersep,-\y cm) {};
+
+        % Draw the output layer node
+        \node[output neuron, pin={[pin edge={->}]right:输出 $Y$}] (O) at (\Layersep,-4.5 cm) {};
+
+        % Connect every node in the input layer with every node in the
+        % hidden layer.
+        \foreach \source in {1,...,8}
+            \foreach \dest in {2,...,7}
+                \path (I-\source) edge (H-\dest);
+
+        % Connect every node in the hidden layer with the output layer
+        \foreach \source in {2,...,7}
+            \path (H-\source) edge (O);
+
+        % Annotate the layers
+        \node[annot,above of=I-1, node distance=1cm] (il) {输入层};
+        \node[annot,right of=il] (hl) {隐藏层};
+        \node[annot,right of=hl] {输出层};
+    \end{tikzpicture}
+\end{figure}

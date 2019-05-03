@@ -20,8 +20,8 @@
 \usepackage{attachfile}
 
 % 标题设置
-\usepackage[raggedright]{titlesec}
-\titleformat*{\section}{\large\upshape\bfseries\centering}
+\usepackage[tiny, raggedright]{titlesec}
+\titleformat*{\section}{\zihao{4}\upshape\bfseries\centering}
 % 行距设置
 %\usepackage{setspace}
 %\singlespacing
@@ -33,6 +33,8 @@
 \usepackage{caption} % 图表标题
 \usepackage{graphicx} % 图片
 \usepackage{booktabs} % 三线表
+\usepackage{array} % 表格列格式拓展
+\usepackage{tikz} % 结构图
 
 % 自定义命令
 \newcommand{\keywords}[1]{\textbf{\textit{关键字---}} #1}
@@ -59,19 +61,22 @@
   \input{contents/1wentichongshu}
   \clearpage
 
-  \input{contents/2wentifenxi}
+  \section{问题分析}
+    \input{contents/2subsec/2_1wenti1}
+    \input{contents/2subsec/2_2wenti2}
+    \input{contents/2subsec/2_3wenti3}
+
+  \input{contents/3fuhaoshuominghemoxinjiashe}
+
+  \section{模型建立及求解}
+    \input{contents/4subsec/4_1shujuyuchuli}
+    \input{contents/4subsec/4_2wanluogoujian}
+    \input{contents/4subsec/4_3hanshucanshu}
+
+  \input{contents/5muxinpinjiagaijin}
   \clearpage
 
-  \input{contents/3muxinjiashe}
-
-  \input{contents/4fuhaoshuoming}
-
-  \input{contents/5muxinjianliqiujie}
-  \clearpage
-
-  \input{contents/6muxinpinjiagaijin}
-
-  \input{contents/7zhencejianyi}
+  \input{contents/6zhencejianyi}
   \clearpage
 
   % 引用文献
@@ -85,12 +90,6 @@
 
   % 附录
   \appendix
-
-  \section{附件 1}
-    中国近些年来的一些经济数据\footnote{来源：中国统计年鉴及中国能源统计年鉴}。
-    \attachfile{appendix/fujian1.xlsx}
-    \label{sec:fujian1}
-
-  \section{附录 2}
+  \input{appendix/fujian.tex}
 
 \end{document}

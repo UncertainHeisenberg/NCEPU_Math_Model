@@ -1,0 +1,43 @@
+\subsection{问题 2：碳排放预测模型}
+
+  \subsubsection{碳排放影响因素分析}
+    为建立模型，需要对碳排放的影响因素进行分析。根据有关文献，碳排放影响因素一般包括：
+    \begin{enumerate}
+      \item 人口因素；
+      \item 城镇化率；
+      \item 经济发展水平：人均 $\mathrm{GDP}$ 或者消除价格波动影响的国内生产总值；
+      \item 人均碳排放量；
+      \item 能源消费强度：能源消费量与 $\mathrm{GDP}$ 之比；
+      \item 能源消费结构：各种能源所占比例，可以用煤炭比例来表示；
+      \item 产业结构：三类产业占比，可以用第二产业占比表示；
+      \item 国际贸易：出口额占 $\mathrm{GDP}$ 比重。
+    \end{enumerate}
+    我们选取，如表 \ref{tab:bianliangshuoming} 中变量，作为主要影响因素并确定其计算方法。
+
+  \subsubsection{模型选择}
+    由上述可知，影响中国碳排放量的因素繁多，此外碳排放量与影响因素之间是非线性关系。
+
+    BP神经网络是一种按误差反向传播（简称误差反传）训练的多层前馈网络，其算法称为BP算法，它的基本思想是梯度下降法，利用梯度搜索技术，以期使网络的实际输出值和期望输出值的误差均方差为最小。
+
+    BP神经网络模型具有较强的自组织、自适应与自学习能力，非线性映射能力，泛化能力以及容错能力，因此我们选用BP神经网络预测模型对我国碳排放量进行预测。
+
+    \begin{table}[htb]
+      \caption{模型变量说明}
+      \label{tab:bianliangshuoming}
+      \centering
+      \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ccccc}
+        \toprule[1.5pt]
+        &变量 && 计算方法 &\\
+        \midrule[1pt]
+        &碳排放量 && 各能源按碳排放系数求和（参见问题重述中：\hyperref[eq:IPCC]{IPCC 方法}） &\\
+        &总人口数 && 城乡人口之和 &\\
+        &$\mathrm{GDP}$ && 各产业生产总值之和 &\\
+        &产业结构 && 第二产业与 $\mathrm{GDP}$ 比值 &\\
+        &城镇化率 && 城镇人口与总人口比值 &\\
+        &经济发展水平 && $\mathrm{GDP}$ 与人口比值 &\\
+        &国际贸易 && 出口额与 $\mathrm{GDP}$ 比值 &\\
+        &人均碳排放量 && 碳排放量与总人口比值 &\\
+        &能源消费强度 && 能源消费量与 $\mathrm{GDP}$ 比值 &\\
+        \bottomrule[1.5pt]
+      \end{tabular*}
+    \end{table}
