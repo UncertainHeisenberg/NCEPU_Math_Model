@@ -12,7 +12,7 @@
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, pdfpagemode=FullScreen}
 
 % 引用设置
-\bibliographystyle{plain}
+\bibliographystyle{NCEPU}
 % 索引设置
 \usepackage{makeidx}
 \makeindex
@@ -28,6 +28,9 @@
 
 % 数学
 \usepackage{amsmath}
+
+% 代码
+\usepackage{listings}
 
 % 图表
 \usepackage{caption} % 图表标题
@@ -51,7 +54,8 @@
   \clearpage
 
   % 添加目录
-  %\phantomsection
+  \phantomsection
+  \thispagestyle{empty}
   \tableofcontents
   \thispagestyle{empty}
   \clearpage
@@ -65,31 +69,33 @@
     \input{contents/2subsec/2_1wenti1}
     \input{contents/2subsec/2_2wenti2}
     \input{contents/2subsec/2_3wenti3}
+  \clearpage
 
   \input{contents/3fuhaoshuominghemoxinjiashe}
+  \clearpage
 
   \section{模型建立及求解}
     \input{contents/4subsec/4_1shujuyuchuli}
     \input{contents/4subsec/4_2wanluogoujian}
     \input{contents/4subsec/4_3hanshucanshu}
+    \input{contents/4subsec/4_4xunlianwanluo}
 
-  \input{contents/5muxinpinjiagaijin}
+  \input{contents/5muxinpinjia}
   \clearpage
 
-  \input{contents/6zhencejianyi}
+  \input{contents/6muxingaijin}
+
+  \input{contents/7zhencejianyi}
   \clearpage
 
   % 引用文献
   \phantomsection
-  \bibliography{ref/math_model.bib}
+  \bibliography{ref/math_model}
   \clearpage
-
-  % 索引
-  \phantomsection
-  \printindex
 
   % 附录
   \appendix
-  \input{appendix/fujian.tex}
+  \input{appendix/fulu}
+  \input{appendix/fujian}
 
 \end{document}

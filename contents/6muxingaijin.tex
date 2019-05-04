@@ -1,0 +1,100 @@
+\section{模型改进}
+  为了确定不同因素对中国碳排放量影响程度的大小，便于问题三的解决。我们建立了灰色关联度分析模型来对数据进行量化比较分析。
+  
+  具体通过求解出各个因素对中国碳排放量的关联度，并按关联度大小排序，从而得到得到各影响因素的重要性排序。
+
+  \subsection{灰色关联分析模型简介\cite{guozhonghua2008}}
+    灰色关联度分析法是一种多因素统计分析方法。它以各因素的样本数据为依据，用灰色关联度来描述各因素间关系的强弱、大小和次序。
+    
+    若样本数据反映出的两因素变化的态势（方向、大小和速度等）基本一致，则它们之间的关联度较大；反之，关联度较小。
+    
+    灰色关联度分析对于一个系统发展变化态势提供了量化的度量，这非常适合动态历程分析。
+
+  \subsection{灰色关联分析模型的建立\cite{de2013}}
+
+    \subsubsection{确定分析序列}
+
+      在对本问题定性分析的基础上，我们分别以八个因素在 2000--2016 年的\textbf{已归一化}的数据作为八个比较序列。
+      \begin{align*}
+        \intertext{设 $8$ 个比较序列形成的矩阵为：}
+        (X'_1,X'_2,\ldots,X'_8) &= 
+        \begin{bmatrix}
+          X_1(2000) & X_2(2000) & \cdots & X_8(2000) \\
+          X_1(2001) & X_2(2001) & \cdots & X_8(2001) \\
+          \vdots & \vdots & \vdots & \vdots \\
+          X_1(2016) & X_2(2016) & \cdots & X_8(2016) \\
+        \end{bmatrix}
+        \intertext{则单个比较序列为：}
+        X'_i &= \bigl(X_i(2000),X_i(2001),\dots,X_i(2016)\bigr)^T
+        \intertext{当中 $X_i(\text{年份})$ 表示该年份的 $X_i$ 的归一化后的值。}
+      \end{align*}
+
+      以中国碳排放量在 2000--2016 年\textbf{已归一化}的数据作为参考数列，参考数量作为理想的比较标准。
+      \[
+        Y' = [Y(2000),Y(2001),\ldots,Y(2016)]
+      \]
+      同理，$Y(\text{年份})$ 表示该年份的 $Y$ 值（碳排放量）。
+
+    \subsubsection{计算关联度}
+      \begin{enumerate}
+        \item 逐个计算每个比较序列对应元素与参考序列对应元素的\textbf{绝对差值}。即：$\Delta_i(k)=|Y(k)-X_i(k)|\qquad (k=2000,\dots,2016\quad i=1,\dots,8)$
+        \item 对于任意的 $i,k$ 在其定义范围内的取值，确定绝对差值的最大值和最小值。即：$\Delta_\text{max}$ 和 $\Delta_\text{min}$ 。
+        \item 由下式，分别计算每个比较序列对应元素与参考序列对应元素的\textbf{关联系数}。即：
+          \[
+            \zeta_i(k)=\frac{\Delta_\text{min}+\rho\cdot\Delta_\text{max}}{\Delta_i(k)+\rho\cdot\Delta_\text{max}}
+          \]
+          其中 $\rho$ 为分辨系数（$0<\rho<1$）。\\
+          若 $\rho$ 越小，则关联系数间的差异越大，区分能力也就越强。通常取 $\rho$ 为 0.5。
+        \item 对各比较序列再分别求其 17 个关联系数的均值，并称该值为\textbf{关联度}。即：
+          \[
+            r_i=\frac{1}{17}\sum_{k=2000}^{2016} \zeta_i(k)
+          \]
+      \end{enumerate}
+
+    \subsubsection{模型求解}
+      利用 $\mathrm{MATLAB}$ 编程实现上述语句。通过带入八个影响因素以及碳排放总量在 2000--2016 年的相关数据，得到其关联度及其排名。如表 \ref{tab:guanlianxu0.5} 所示。
+      \begin{table}[htb]
+        \centering
+        \caption{$\rho=0.5$ 时，各影响因素关联度所求解及排序}
+        \begin{tabular*}{0.618\paperwidth}{@{\extracolsep{\fill}}ccccccc}
+          \toprule[1.5pt]
+          &影响因素 && 关联度 && 排名 &\\
+          \midrule[1pt]
+          &总人口数 && 0.6746 && 1 &\\
+          &$\mathrm{GDP}$ && 0.6066 && 1 &\\
+          &产业结构 && 0.3949 && 2 &\\
+          &城镇化率 && 0.3949 && 3 &\\
+          &经济发展水平 && 0.3949 && 3 &\\
+          &国际贸易 && 0.3949 && 3 &\\
+          &人均碳排放量 && 0.3949 && 3 &\\
+          &能源消费强度 && 0.3949 && 3 &\\
+          \bottomrule[1.5pt]
+        \end{tabular*}
+        \label{tab:guanlianxu0.5}
+      \end{table}
+
+      上表中除 \emph{总人口数} 和 $GDP$，其余六个影响因素区分不明显。因而我们把 $\rho$ 重设定为 0.1 再次计算各影响因素关联度。结果如表 \ref{tab:guanlianxu0.1} 所示。
+      \begin{table}[htb]
+        \centering
+        \caption{$\rho=0.1$ 时，各影响因素关联度所求解及排序}
+        \begin{tabular*}{0.618\paperwidth}{@{\extracolsep{\fill}}ccccccc}
+          \toprule[1.5pt]
+          &影响因素 && 关联度 && 排名 &\\
+          \midrule[1pt]
+          &总人口数 && 0.6746 && 1 &\\
+          &$\mathrm{GDP}$ && 0.6066 && 1 &\\
+          &产业结构 && 0.3949 && 2 &\\
+          &城镇化率 && 0.3949 && 3 &\\
+          &经济发展水平 && 0.3949 && 3 &\\
+          &国际贸易 && 0.3949 && 3 &\\
+          &人均碳排放量 && 0.3949 && 3 &\\
+          &能源消费强度 && 0.3949 && 3 &\\
+          \bottomrule[1.5pt]
+        \end{tabular*}
+        \label{tab:guanlianxu0.1}
+      \end{table}
+
+      由上表，我们得到影响因素重要排序。即：
+      \[
+        \text{总人口}>\textrm{GDP}>
+      \]

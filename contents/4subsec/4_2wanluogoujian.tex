@@ -1,32 +1,58 @@
 \subsection{$\mathrm{BP}$ 神经网络结构构建}
 
   \subsubsection{结构展示}
-  最终网络结构示意图如图 \ref{tab:shenjinwanluo} 所示：
+  最终网络结构示意图如图 \ref{tab:shenjinwanluo} \cite{Fauske2006}所示：
   \input{figures/neural_network.tex}
 
   \subsubsection{设计网络输入层和输出层}
     首先设计网络输入、输出层。具体如表 \ref{tab:shurushuchu} 所示：
-    \begin{table}[hb]
-      \caption{$\mathrm{BP}$神经网络输入、输出层}
-      \label{tab:shurushuchu}
+    \begin{table}[htb]
       \centering
-      \begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}}ccccc}
+      \caption{$\mathrm{BP}$神经网络输入、输出层}
+      \begin{tabular*}{0.618\paperwidth}{@{\extracolsep{\fill}}ccccc}
         \toprule[1.5pt]
         &输入层 && 输出层 &\\
         \midrule[1pt]
         &$\mathrm{X_1}$\quad $\mathrm{X_2}$\quad $\mathrm{X_3}$\quad $\mathrm{X_4}$\quad $\mathrm{X_5}$\quad $\mathrm{X_6}$\quad $\mathrm{X_7}$\quad $\mathrm{X_8}$ && $\mathrm{Y}$ &\\
         \bottomrule[1.5pt]
       \end{tabular*}
+      \label{tab:shurushuchu}
     \end{table}
 
   \subsubsection{选取隐含层节点数}
 
     隐含层节点数的选取是决定神经网络训练精度的关键，过多过少都会有很大影响。
 
-    隐含层节点过多，能有效减少系统误差，但也会导致诸如：网络训练时间延长、训练容易陷入局部极小点的问题。从而降低网络的容错性和范化能力；而隐含层节点数过少，则又可能造成网络性能差或者网络根本不能被训练的问题。
+    隐含层节点过多，能有效减少系统误差，但也会导致诸如：网络训练时间延长、训练容易陷入局部极小点的问题。从而降低网络的容错性和范化能力；而隐含层节点数过少，则又可能造成网络性能差或者网络根本不能被训练的问题\cite{zhangfaming2016}。
 
-    因此隐含层节点数的选取，我们参考 $\mathrm{Kolmogorov}$ 定理，并采取下列经验公式：
+    因此隐含层节点数的选取，我们参考 $\mathrm{Kolmogorov}$ 定理，并采取下列经验公式\cite{Fauske2006}：
     \[
-      J = \sqrt{m+n}+n \text{\qquad 其中 $m$ 为输入节点数，$n$ 为输出节点数，$a$ 的取值范围为 1--10}
+      J = \sqrt{m+n}+a \text{\qquad 其中 $m$ 为输入节点数，$n$ 为输出节点数，$a$ 的取值范围为 1--10}
     \]
-    我们最终选取 6 为隐含层节点数。
+    最终确定隐层节点数范围为 $[4,13]$。
+
+    我们通过试凑法确定最佳隐层节点数。\\
+    分别计算 $4,5,\dots,13$ 作为隐层节点数的最终 $\mathrm{MES}$ 值。其结果如表所示。
+    \begin{table}[htb]
+      \centering
+      \caption{各隐层节点数对应 $\mathrm{MES}$ 值表}
+      \begin{tabular*}{0.618\paperwidth}{@{\extracolsep{\fill}}ccccc}
+        \toprule[1.5pt]
+        &隐层节点数 && $\mathrm{MES}$ &\\
+        \midrule[1pt]
+        &4 && &\\
+        &5 && &\\
+        &6 && &\\
+        &7 && &\\
+        &8 && &\\
+        &9 && &\\
+        &10 && &\\
+        &11 && &\\
+        &12 && &\\
+        &13 && &\\
+        \bottomrule[1.5pt]
+      \end{tabular*}
+      \label{tab:shurushuchu}
+    \end{table}
+
+    因此我们最终选取 6 为隐含层节点数。
