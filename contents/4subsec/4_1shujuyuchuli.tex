@@ -39,15 +39,6 @@
 
     之后我们把数据分类，分别作为 $\mathrm{BP}$ 神经网络的训练数据集和仿真检验数据集。详细如表 \ref{tab:shujufenlei}。
 
-  \subsubsection{数据归一化处理}
-
-    \label{ss2:guiyihua}
-    此外，为去除数据量纲，方便数据处理，并使 $\mathrm{BP}$ 神经网络收敛加快，我们将数据集进行了归一化处理\cite{liuzhongqi2010}。计算公式为：
-    \[
-      y = \frac{x-\min{x}}{\max{x}-\min{x}} \text{式中，$y$ 为归一化后的数据；$x$ 为归一化之前的原始数据。}
-    \]
-    该过程可由 $\mathrm{MATLAB}$ 中函数 $\mathrm{mapminmax}$ 实现。
-
     \begin{table}[thb]
       \centering
       \caption{数据分类}
@@ -61,3 +52,14 @@
       \end{tabular*}
       \label{tab:shujufenlei}
     \end{table}
+    \clearpage
+
+  \subsubsection{数据归一化处理}
+
+    \label{ss2:guiyihua}
+    此外，为去除数据量纲，方便数据处理，并使 $\mathrm{BP}$ 神经网络收敛加快，我们将数据集进行了归一化处理\cite{liuzhongqi2010}。计算公式为：
+    \begin{align*}
+      X'_i = \frac{2\bigl(X_i-\mathrm{min}(X_i)\bigr)}{\mathrm{max}(X_i)-\mathrm{min}(X_i)}-1 \qquad (i=1,2,\dots,8)
+      \intertext{式中，$X'_i$ 为归一化后的数据；$X_i$ 为归一化之前的原始数据。}
+      \intertext{该过程可由 $\mathrm{MATLAB}$ 中函数 $\mathrm{mapminmax}$ 实现。}
+    \end{align*}

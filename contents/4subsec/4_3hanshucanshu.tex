@@ -1,32 +1,8 @@
 \subsection{$\mathrm{BP}$ 神经网络函数、参数设定}
 
-  具体设定及初始化参见表 \ref{tab:shedingchushihua} 所示：
-  \begin{table}[thb]
-    \centering
-    \caption{函数设定及参数初始化}
-    \begin{tabular*}{0.618\paperwidth}{@{\extracolsep{\fill}}ccccc}
-      \toprule[1.5pt]
-      &函数 && 设定 &\\
-      \midrule[1pt]
-      &隐层激励函数 && $\mathrm{tansig}$ &\\
-      &输出层激励函数 && $\mathrm{logsig}$ &\\
-      &网络训练函数 && $\mathrm{traingdx}$ &\\
-      &网络性能函数 && $\mathrm{mes}$ &\\
-      \midrule[1pt]
-      \midrule[1pt]
-      &参数 && 初始化 &\\
-      \midrule[1pt]
-      &期望误差最小值 $\mathrm{err-goal}$ && 0.0000001 &\\
-      &最大循环次数 $\mathrm{max-epoch}$ && 5000 &\\
-      &修正权值的学习速率 $\mathrm{lr}$ && 0.01 &\\
-      \bottomrule[1.5pt]
-    \end{tabular*}
-    \label{tab:shedingchushihua}
-  \end{table}
+  \subsubsection{选取激励函数}
 
-  \subsubsection{选取激励函数\cite{Sallybin2013}}
-
-    $\mathrm{BP}$ 神经网络通常采用 $\mathrm{Sigmoid}$ 可微函数和线性函数作为网络的激励函数。
+    $\mathrm{BP}$ 神经网络通常采用 $\mathrm{Sigmoid}$ 可微函数和线性函数作为网络的激励函数\cite{Sallybin2013}。
 
     我们选择 $\mathrm{S}$ 型正切函数 $\mathrm{tansig}$ 作为隐层神经元的激励函数。
 
@@ -38,10 +14,35 @@
 
     性能函数我们选取 $\mathrm{BP}$ 神经网络通常采用的 $\mathrm{mex}$ 函数。
 
-  \subsubsection{选取学习速率\cite{zhangfaming2016}}
+  \subsubsection{选取学习速率}
 
     学习速率对 $\mathrm{BP}$ 神经网络具有重要影响作用。
 
-    学习速率太小，网络学习缓慢，需要增加训练次数；学习速率太快，容易导致网络不收敛，影响训练的精度。
+    学习速率太小，网络学习缓慢，需要增加训练次数；学习速率太快，容易导致网络不收敛，影响训练的精度\cite{zhangfaming2016}。
 
     我们最终选取学习速率为 $0.01$，最大循环次数为 $5000$ 次。
+
+  \subsubsection{具体设定及初始化}
+    参见表 \ref{tab:shedingchushihua} 所示：
+    \begin{table}[thb]
+      \centering
+      \caption{函数设定及参数初始化}
+      \begin{tabular*}{0.618\paperwidth}{@{\extracolsep{\fill}}ccccc}
+        \toprule[1.5pt]
+        &函数 && 设定 &\\
+        \midrule[1pt]
+        &隐层激励函数 && $\mathrm{tansig}$ &\\
+        &输出层激励函数 && $\mathrm{logsig}$ &\\
+        &网络训练函数 && $\mathrm{traingdx}$ &\\
+        &网络性能函数 && $\mathrm{mes}$ &\\
+        \midrule[1pt]
+        \midrule[1pt]
+        &参数 && 初始化 &\\
+        \midrule[1pt]
+        &期望误差最小值 $\mathrm{err-goal}$ && 0.0000001 &\\
+        &最大循环次数 $\mathrm{max-epoch}$ && 5000 &\\
+        &修正权值的学习速率 $\mathrm{lr}$ && 0.01 &\\
+        \bottomrule[1.5pt]
+      \end{tabular*}
+      \label{tab:shedingchushihua}
+    \end{table}

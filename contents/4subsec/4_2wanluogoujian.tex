@@ -3,6 +3,7 @@
   \subsubsection{结构展示}
   最终网络结构示意图如图 \ref{tab:shenjinwanluo} \cite{Fauske2006}所示：
   \input{figures/neural_network.tex}
+  \clearpage
 
   \subsubsection{设计网络输入层和输出层}
     首先设计网络输入、输出层。具体如表 \ref{tab:shurushuchu} 所示：
@@ -29,10 +30,10 @@
     \[
       J = \sqrt{m+n}+a \text{\qquad 其中 $m$ 为输入节点数，$n$ 为输出节点数，$a$ 的取值范围为 1--10}
     \]
-    最终确定隐层节点数范围为 $[4,13]$。
+    最终确定隐层节点数范围为 4--13。
 
     我们通过试凑法确定最佳隐层节点数。\\
-    分别计算 $4,5,\dots,13$ 作为隐层节点数的最终 $\mathrm{MES}$ 值。其结果如表所示。
+    分别计算 $4,5,\dots,13$ 作为隐层节点数的最终 $\mathrm{MES}$ 值。其结果如表 \ref{tab:yincenjiedian}所示。
     \begin{table}[htb]
       \centering
       \caption{各隐层节点数对应 $\mathrm{MES}$ 值表}
@@ -52,7 +53,7 @@
         &13 && &\\
         \bottomrule[1.5pt]
       \end{tabular*}
-      \label{tab:shurushuchu}
+      \label{tab:yincenjiedian}
     \end{table}
 
     因此我们最终选取 6 为隐含层节点数。
