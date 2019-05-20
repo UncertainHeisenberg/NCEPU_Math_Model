@@ -1,7 +1,7 @@
 \subsection{$\mathrm{BP}$ 神经网络结构构建}
 
   \subsubsection{结构展示}
-  最终网络结构示意图如图 \ref{tab:shenjinwanluo} \cite{Fauske2006}所示：
+  最终网络结构示意图如图 \ref{tab:shenjinwanluo} 所示\cite{Fauske2006}：
   \input{figures/neural_network.tex}
   \clearpage
 
@@ -26,7 +26,7 @@
 
     隐含层节点过多，能有效减少系统误差，但也会导致诸如：网络训练时间延长、训练容易陷入局部极小点的问题。从而降低网络的容错性和范化能力；而隐含层节点数过少，则又可能造成网络性能差或者网络根本不能被训练的问题\cite{zhangfaming2016}。
 
-    因此隐含层节点数的选取，我们参考 $\mathrm{Kolmogorov}$ 定理，并采取下列经验公式\cite{Fauske2006}：
+    因此隐含层节点数的选取，我们参考 $\mathrm{Kolmogorov}$ 定理，并采取下列经验公式\cite{zhangfaming2016}：
     \[
       J = \sqrt{m+n}+a \text{\qquad 其中 $m$ 为输入节点数，$n$ 为输出节点数，$a$ 的取值范围为 1--10}
     \]
@@ -41,19 +41,45 @@
         \toprule[1.5pt]
         &隐层节点数 && $\mathrm{MES}$ &\\
         \midrule[1pt]
-        &4 && &\\
-        &5 && &\\
-        &6 && &\\
-        &7 && &\\
-        &8 && &\\
-        &9 && &\\
-        &10 && &\\
-        &11 && &\\
-        &12 && &\\
-        &13 && &\\
+        &4 && $4.4834\times 10^{-10}$ &\\
+        &5 && $3.9104\times 10^{-4}$ &\\
+        &6 && $2.4403\times 10^{-11}$ &\\
+        &7 && $2.0249\times 10^{-9}$ &\\
+        &8 && $9.8575\times 10^{-8}$ &\\
+        &9 && $8.6306\times 10^{-6}$ &\\
+        &10 && $9.4544\times 10^{-4}$ &\\
+        &11 && $2.1410\times 10^{-9}$ &\\
+        &12 && $6.0374\times 10^{-13}$ &\\
+        &13 && $8.6611\times 10^{-8}$ &\\
         \bottomrule[1.5pt]
       \end{tabular*}
       \label{tab:yincenjiedian}
     \end{table}
+    \clearpage
+
+    由表 \ref{tab:yincenjiedian} 可知 $\mathrm{MES}$ 最小时，隐层节点数取 12 。
+
+    但我们在深入计算时，发现当隐层节点数超出 8 时，模型给出的预测值急剧下降。与真实偏差过大。%如表 \ref{tab:jiedianyucezhi} 所示。
+    %\begin{table}[htb]
+    %  \centering
+    %  \caption{各隐层节点数对应预测值和与真实值相对偏差}
+    %  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ccccccccc}
+    %    \toprule[1.5pt]
+    %    &隐层节点数 && 2015 年预测值 && 2016 年预测值 && 平均相对偏差 &\\
+    %    \midrule[1pt]
+    %    &4 && 132190 && 145780 &\\
+    %    &5 && -70627 && 26311 && &\\
+    %    &6 && 262060 && && &\\
+    %    &7 && && && &\\
+    %    &8 && && && &\\
+    %    &9 && && && &\\
+    %    &10 && && && &\\
+    %    &11 && && && &\\
+    %    &12 && && && &\\
+    %    &13 && && && &\\
+    %    \bottomrule[1.5pt]
+    %  \end{tabular*}
+    %  \label{tab:jiedianyucezhi}
+    %\end{table}
 
     因此我们最终选取 6 为隐含层节点数。

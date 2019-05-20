@@ -7,6 +7,8 @@
 
 % 目录拓展
 \usepackage[nottoc]{tocbibind}
+\usepackage{balance} %平衡左右栏
+
 % 超文本链接设置
 \usepackage{bookmark}
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, pdfpagemode=FullScreen}
@@ -52,13 +54,17 @@
   \phantomsection
   \input{cover/abstract}
   \addcontentsline{toc}{section}{摘要}
-  \clearpage
 
   % 添加目录
+  \setlength{\columnsep}{24pt}
+  \setlength{\columnseprule}{0.4pt}
+  \twocolumn
+  \balance
   \phantomsection
   \thispagestyle{empty}
   \tableofcontents
   \thispagestyle{empty}
+  \onecolumn
   \clearpage
 
   % 内容
